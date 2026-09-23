@@ -1,0 +1,19 @@
+{
+    "name": "cat2-notes-gen-marketplace",
+    "owner": {
+        "name": "Jaswanth Kumar Mahanthi",
+        "url": "https://github.com/Jazz1-6"
+    },
+    "plugins": [
+        {
+            "name": "cat2-notes-gen",
+            "source": "./",
+            "description": "Generate print-optimized CAT-2 exam-notes PDFs from a syllabus and scope.",
+            "version": "1.0.0",
+            "author": {
+                "name": "Jaswanth Kumar Mahanthi",
+                "url": "https://github.com/Jazz1-6E"
+            }
+        }
+    ]
+}
