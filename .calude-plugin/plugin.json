@@ -1,0 +1,21 @@
+{
+    "name": "cat2-notes-gen",
+    "description": "Generate print-optimized CAT-2 exam-notes PDFs from a syllabus and scope. Monochrome, HOTs-format, even-page-count output.",
+    "version": "1.0.0",
+    "author": {
+        "name": "Jaswanth Kumar Mahanthi",
+        "url": "https://github.com/Jazz1-6"
+    },
+    "license": "MIT",
+    "keywords": [
+        "exam",
+        "notes",
+        "cat2",
+        "study",
+        "pdf",
+        "HOTs",
+        "open-book"
+    ],
+    "homepage": "https://github.com/Jazz1-6/cat2-notes-gen",
+    "repository": "https://github.com/Jazz1-6/cat2-notes-gen"
+}
