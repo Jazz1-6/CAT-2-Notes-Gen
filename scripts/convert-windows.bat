@@ -22,12 +22,12 @@ set EDGE2="C:\Program Files\Microsoft\Edge\Application\msedge.exe"
 
 if exist %EDGE1% (
     echo Using Edge (x86 path)...
-    %EDGE1% --headless=new --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
+    %EDGE1% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
     goto :done
 )
 if exist %EDGE2% (
     echo Using Edge (x64 path)...
-    %EDGE2% --headless=new --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
+    %EDGE2% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
     goto :done
 )
 
@@ -35,7 +35,7 @@ REM Fall back to Chrome
 set CHROME="C:\Program Files\Google\Chrome\Application\chrome.exe"
 if exist %CHROME% (
     echo Using Chrome...
-    %CHROME% --headless=new --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
+    %CHROME% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
     goto :done
 )
 
