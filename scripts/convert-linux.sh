@@ -27,7 +27,7 @@ if [ -z "$BROWSER" ]; then
 fi
 
 echo "Using $BROWSER..."
-"$BROWSER" --headless=new --disable-gpu --print-to-pdf="$OUTPUT" --no-pdf-header-footer "file://$INPUT"
+"$BROWSER" --headless --disable-gpu --print-to-pdf="$OUTPUT" --no-pdf-header-footer "file://$INPUT"
 
 echo
 echo "Output written to: $OUTPUT"
