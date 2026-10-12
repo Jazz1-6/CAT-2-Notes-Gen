@@ -85,7 +85,9 @@ The skill will:
 - **A headless browser** — Microsoft Edge (Windows) or Google Chrome (Mac/Linux). Both ship with the OS or are free.
 - **No external libraries.** The HTML is self-contained; the scripts are 3 lines each.
 
-## License
+## 12-10-2026 
+Today again started working on it will update soon 
+
 
 MIT — see `LICENSE`.
 
