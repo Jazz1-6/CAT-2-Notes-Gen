@@ -1,8 +1,8 @@
 @echo off
-REM Exam Notes Generator — Windows PDF conversion
+REM Exam Notes Generator - Windows PDF conversion
 REM Usage: convert-windows.bat <input.html> <output.pdf>
 
-setlocal
+setlocal enabledelayedexpansion
 
 if "%~1"=="" (
     echo Usage: convert-windows.bat input.html output.pdf
@@ -13,36 +13,41 @@ if "%~2"=="" (
     exit /b 1
 )
 
-set INPUT=%~f1
-set OUTPUT=%~f2
+set "INPUT=%~f1"
+set "OUTPUT=%~f2"
 
-REM Try Edge first (ships with Windows 10/11)
-set EDGE1="C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
-set EDGE2="C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+REM Convert Windows backslashes to forward slashes for the file:// URL
+set "INPUT_URL=!INPUT:\=/!"
 
-if exist %EDGE1% (
-    echo Using Edge (x86 path)...
-    %EDGE1% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
-    goto :done
-)
-if exist %EDGE2% (
-    echo Using Edge (x64 path)...
-    %EDGE2% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
-    goto :done
-)
+REM Locate a headless browser (no unescaped parens inside if-blocks)
+set "BROWSER="
 
-REM Fall back to Chrome
-set CHROME="C:\Program Files\Google\Chrome\Application\chrome.exe"
-if exist %CHROME% (
-    echo Using Chrome...
-    %CHROME% --headless --disable-gpu --print-to-pdf="%OUTPUT%" --no-pdf-header-footer "file:///%INPUT:\=/%"
-    goto :done
+if exist "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" set "BROWSER=C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+if not defined BROWSER if exist "C:\Program Files\Microsoft\Edge\Application\msedge.exe" set "BROWSER=C:\Program Files\Microsoft\Edge\Application\msedge.exe"
+if not defined BROWSER if exist "C:\Program Files\Google\Chrome\Application\chrome.exe" set "BROWSER=C:\Program Files\Google\Chrome\Application\chrome.exe"
+if not defined BROWSER if exist "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" set "BROWSER=C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"
+if not defined BROWSER if exist "%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe" set "BROWSER=%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"
+
+if not defined BROWSER (
+    echo Error: No compatible browser found. Install Edge or Chrome.
+    exit /b 1
 )
 
-echo Error: No compatible browser found (Edge or Chrome required).
-exit /b 1
-
-:done
+echo Using: !BROWSER!
+echo Input: !INPUT!
+echo Output: !OUTPUT!
 echo.
-echo Output written to: %OUTPUT%
-endlocal
+
+"!BROWSER!" --headless=new --disable-gpu --no-pdf-header-footer --print-to-pdf="!OUTPUT!" "file:///!INPUT_URL!"
+
+if exist "!OUTPUT!" (
+    echo.
+    echo Output written to: !OUTPUT!
+    endlocal
+    exit /b 0
+) else (
+    echo.
+    echo Error: PDF was not created.
+    endlocal
+    exit /b 1
+)
