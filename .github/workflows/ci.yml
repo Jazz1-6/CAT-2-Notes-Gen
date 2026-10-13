@@ -1,0 +1,44 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON manifests
+        run: |
+          for f in .claude-plugin/*.json; do
+            echo "Checking $f"
+            jq empty "$f"
+          done
+
+      - name: Check skill frontmatter
+        run: |
+          head -1 skills/cat2-notes-gen/SKILL.md | grep -q '^---$' \
+            || (echo "SKILL.md missing frontmatter" && exit 1)
+
+      - name: Shellcheck scripts
+        run: |
+          sudo apt-get install -y shellcheck
+          shellcheck scripts/convert-linux.sh scripts/convert-macos.sh || true
+
+      - name: Markdown link check
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          config-file: '.github/markdown-link-check.json'
+
+      - name: Verify required files exist
+        run: |
+          for f in README.md LICENSE PROMPT.md \
+                   .claude-plugin/plugin.json .claude-plugin/marketplace.json \
+                   skills/cat2-notes-gen/SKILL.md template/notes-template.html \
+                   commands/cat2-notes.md commands/cat2-notes-help.md commands/cat2-notes-nohots.md; do
+            test -f "$f" || (echo "Missing: $f" && exit 1)
+          done

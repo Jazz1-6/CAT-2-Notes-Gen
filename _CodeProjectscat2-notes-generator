@@ -1,0 +1,35 @@
+warning: in the working copy of 'scripts/convert-linux.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/convert-macos.sh', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/scripts/convert-linux.sh b/scripts/convert-linux.sh[m
+[1mindex 2e6668a..72f6f1f 100644[m
+[1m--- a/scripts/convert-linux.sh[m
+[1m+++ b/scripts/convert-linux.sh[m
+[36m@@ -30,4 +30,4 @@[m [mecho "Using $BROWSER..."[m
+ "$BROWSER" --headless --disable-gpu --print-to-pdf="$OUTPUT" --no-pdf-header-footer "file://$INPUT"[m
+ [m
+ echo[m
+[31m-echo "Output written to: $OUTPUT"[m
+[32m+[m[32mecho "Output written to: $OUTPUT"[m
+\ No newline at end of file[m
+[1mdiff --git a/scripts/convert-macos.sh b/scripts/convert-macos.sh[m
+[1mindex 2e6668a..72f6f1f 100644[m
+[1m--- a/scripts/convert-macos.sh[m
+[1m+++ b/scripts/convert-macos.sh[m
+[36m@@ -30,4 +30,4 @@[m [mecho "Using $BROWSER..."[m
+ "$BROWSER" --headless --disable-gpu --print-to-pdf="$OUTPUT" --no-pdf-header-footer "file://$INPUT"[m
+ [m
+ echo[m
+[31m-echo "Output written to: $OUTPUT"[m
+[32m+[m[32mecho "Output written to: $OUTPUT"[m
+\ No newline at end of file[m
+[1mdiff --git a/scripts/convert-windows.bat b/scripts/convert-windows.bat[m
+[1mindex 7f6aaab..ae97b30 100644[m
+[1m--- a/scripts/convert-windows.bat[m
+[1m+++ b/scripts/convert-windows.bat[m
+[36m@@ -45,4 +45,4 @@[m [mexit /b 1[m
+ :done[m
+ echo.[m
+ echo Output written to: %OUTPUT%[m
+[31m-endlocal[m
+[32m+[m[32mendlocal[m
+\ No newline at end of file[m

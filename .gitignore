@@ -1,0 +1,21 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temp files
+*.tmp
+*.log
+*~
+
+# Generated PDFs (uncomment if you don't want to commit rendered PDFs)
+# *.pdf
+
+# Node (if you add tooling later)
+node_modules/
+package-lock.json
+
+# Python (if you add tooling later)
+__pycache__/
+*.pyc
+.venv/

@@ -1,4 +1,4 @@
-# cat2-notes-gen
+﻿# cat2-notes-gen
 
 An agent skill that generates print-optimized CAT-2 exam-notes PDFs from a syllabus, scope, and constraints. Designed for open-book HOTs (Higher Order Thinking) exams with a fixed, readable, print-friendly UI.
 
@@ -6,31 +6,31 @@ An agent skill that generates print-optimized CAT-2 exam-notes PDFs from a sylla
 
 Given a subject's syllabus + scope, this skill produces:
 
-- **`notes.html`** — the full study version (topic content + worked traces + HOT practice questions)
-- **`notes-nohots.html`** — same content, HOT practice questions removed (for quick reference during the exam)
-- **`notes.pdf`** + **`notes-nohots.pdf`** — print-ready PDFs via headless browser
+- **`notes.html`** â€” the full study version (topic content + worked traces + HOT practice questions)
+- **`notes-nohots.html`** â€” same content, HOT practice questions removed (for quick reference during the exam)
+- **`notes.pdf`** + **`notes-nohots.pdf`** â€” print-ready PDFs via headless browser
 - Both PDFs respect **even page count** for two-sided printing
 
 ## What makes it different
 
-- **Fixed UI** — Georgia serif body, monochrome, thin gray borders, bold inline labels (`WHY YOU'D USE THIS`, `WHAT IF…?`, `COMMON MISTAKE`, `ANALOGY`, `KEY RULES`). No colored callout boxes, no decorative bloat. Survives black-and-white printing.
-- **Structure per topic** — "In one sentence" summary → analogy → why you'd use it → key rules / formula box → code → worked example with numbered steps → what-if companion → common mistake.
-- **HOT question format** — `Q1 [Tag]` header → question text → `Answer:` → numbered reasoning steps → code → `OUTPUT` block → `FINAL ANSWER —` boxed → `Justify:` closing.
-- **Cheat-sheet section** — cram sheet, master formula sheet, stability quick-reference, tie-break rules, exam-day checklist.
+- **Fixed UI** â€” Georgia serif body, monochrome, thin gray borders, bold inline labels (`WHY YOU'D USE THIS`, `WHAT IFâ€¦?`, `COMMON MISTAKE`, `ANALOGY`, `KEY RULES`). No colored callout boxes, no decorative bloat. Survives black-and-white printing.
+- **Structure per topic** â€” "In one sentence" summary â†’ analogy â†’ why you'd use it â†’ key rules / formula box â†’ code â†’ worked example with numbered steps â†’ what-if companion â†’ common mistake.
+- **HOT question format** â€” `Q1 [Tag]` header â†’ question text â†’ `Answer:` â†’ numbered reasoning steps â†’ code â†’ `OUTPUT` block â†’ `FINAL ANSWER â€”` boxed â†’ `Justify:` closing.
+- **Cheat-sheet section** â€” cram sheet, master formula sheet, stability quick-reference, tie-break rules, exam-day checklist.
 
 ## Installation
 
 ### As a Claude Code plugin
 
-1. In Claude Code: `/plugin marketplace add Jazz1-6E/cat2-notes-gen`
-2. Then: `/plugin install cat2-notes-gen@cat2-notes-gen`
+1. In Claude Code: `/plugin marketplace add Jazz1-6/CAT-2-Notes-Gen`
+2. Then: `/plugin install cat2-notes-gen@cat2-notes-gen-marketplace`
 3. Run `/cat2-notes` to generate notes.
 
 ### As a Claude Skill (folder)
 
 1. Copy this repo into your Claude Skills directory (usually `~/.claude/skills/cat2-notes-gen/`).
 2. Restart Claude (or reload skills).
-3. Ask: *"Generate exam notes for [subject], Module X–Y"*.
+3. Ask: *"Generate exam notes for [subject], Module Xâ€“Y"*.
 
 ### As a generic agent prompt
 
@@ -54,7 +54,7 @@ Copy the contents of `PROMPT.md` into your system prompt for ChatGPT, Cursor, or
 > - Subject: Operating Systems
 > - Modules: 3 and 4 (CPU Scheduling, Deadlock, Memory, Disk Scheduling, Page Replacement)
 > - Code language: none (theory subject)
-> - Exam type: Open book, 5 HOTs questions × 10 marks
+> - Exam type: Open book, 5 HOTs questions Ã— 10 marks
 > - Print target: even page count, ~28 pages
 > - Exclusions: Module 5 (MST/Prim's/Kruskal's as standalone)
 > - UI reference: [attach example PDF]
@@ -72,24 +72,22 @@ The skill will:
 
 ## Files
 
-- `skills/cat2-notes-gen/SKILL.md` — Claude Skills-compatible definition
-- `PROMPT.md` — generic agent prompt
-- `template/notes-template.html` — the HTML/CSS skeleton
-- `scripts/convert-*.sh` / `convert-*.bat` — headless browser PDF renderers
-- `examples/dsa-cat2/` — worked example (DSA Module 3+4)
-- `docs/` — customization, design notes, troubleshooting
+- `skills/cat2-notes-gen/SKILL.md` â€” Claude Skills-compatible definition
+- `PROMPT.md` â€” generic agent prompt
+- `template/notes-template.html` â€” the HTML/CSS skeleton
+- `scripts/convert-*.sh` / `convert-*.bat` â€” headless browser PDF renderers
+- `examples/dsa-cat2/` â€” worked example (DSA Module 3+4)
+- `docs/` â€” customization, design notes, troubleshooting
 
 ## Requirements
 
 - **Node.js** not required.
-- **A headless browser** — Microsoft Edge (Windows) or Google Chrome (Mac/Linux). Both ship with the OS or are free.
+- **A headless browser** â€” Microsoft Edge (Windows) or Google Chrome (Mac/Linux). Both ship with the OS or are free.
 - **No external libraries.** The HTML is self-contained; the scripts are 3 lines each.
 
-## 12-10-2026 
-Today again started working on it will update soon 
+## License
 
-
-MIT — see `LICENSE`.
+MIT â€” see `LICENSE`.
 
 ## Credits
 
